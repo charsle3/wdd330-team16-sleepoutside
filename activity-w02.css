@@ -1,0 +1,14 @@
+h1{
+    text-align: center;
+    color: red;
+}
+button{
+    padding: 10px;
+    background-image: linear-gradient(red, blue);
+    color: antiquewhite;
+    font-size: x-large;
+    border-radius: 50px;
+}
+body {
+    text-align: center;
+}
