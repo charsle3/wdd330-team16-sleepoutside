@@ -16,7 +16,7 @@ export default class ProductList {
 
     productCardTemplate(product) {
         const htmlTemplate = `
-            <li class="product-card"
+            <li class="product-card">
                 <a href="product_pages/?product=${product.Id}">
                     <img
                     src="${product.Image}"
