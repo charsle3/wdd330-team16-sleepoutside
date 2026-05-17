@@ -25,4 +25,22 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function calculateTotal() {
+  const totalElement = document.querySelector("#cart-total");
+  let totalCost = 0;
+
+  if (document.querySelector(".product-list").innerHTML != "") {
+    document.querySelector(".cart-footer").classList.remove("hide");
+
+    const cartItems = getLocalStorage("so-cart");
+    cartItems.forEach(item => {
+      totalCost += item.FinalPrice;
+    });
+
+    totalElement.innerHTML = `<h2>Total: $${totalCost}</h2>`;
+  }
+}
+
 renderCartContents();
+
+calculateTotal();
