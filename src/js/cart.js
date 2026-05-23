@@ -1,8 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
-
-
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
 
@@ -32,6 +30,22 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+function calculateTotal() {
+  const totalElement = document.querySelector("#cart-total");
+  let totalCost = 0;
+
+  if (document.querySelector(".product-list").innerHTML != "") {
+    document.querySelector(".cart-footer").classList.remove("hide");
+
+    const cartItems = getLocalStorage("so-cart");
+    cartItems.forEach(item => {
+      totalCost += item.FinalPrice;
+    });
+
+    totalElement.innerHTML = `<h2>Total: $${totalCost}</h2>`;
+  }
 }
 
 renderCartContents();
