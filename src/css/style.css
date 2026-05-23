@@ -243,7 +243,7 @@ button {
 
 /*Cart footer => total price and checkout button*/
 .hide {
-  display: none;  
+  display: none;
 }
 
 @media screen and (min-width: 500px) {

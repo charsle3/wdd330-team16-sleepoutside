@@ -1,12 +1,14 @@
 import { getLocalStorage } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
+loadHeaderFooter();
+
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
 
-
   if (!cartItems || cartItems.length === 0) {
-    document.querySelector(".product-list").innerHTML = `<p class="empty-cart">Your cart is currently empty.</p>`;
+    document.querySelector(".product-list").innerHTML =
+      `<p class="empty-cart">Your cart is currently empty.</p>`;
     return;
   }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
@@ -40,7 +42,7 @@ function calculateTotal() {
     document.querySelector(".cart-footer").classList.remove("hide");
 
     const cartItems = getLocalStorage("so-cart");
-    cartItems.forEach(item => {
+    cartItems.forEach((item) => {
       totalCost += item.FinalPrice;
     });
 
@@ -51,5 +53,3 @@ function calculateTotal() {
 renderCartContents();
 
 calculateTotal();
-
-loadHeaderFooter();
