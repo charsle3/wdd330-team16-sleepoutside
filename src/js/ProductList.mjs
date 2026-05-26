@@ -1,7 +1,19 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  return `
+  if (product.SuggestedRetailPrice > product.FinalPrice) // Check for discounts
+    return `
+    <li class="product-card">
+      <a href="/product_pages/?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
+        <h3>${product.Brand.Name}</h3>
+        <p>${product.NameWithoutBrand}</p>
+        <p class="product-card__price">$${product.FinalPrice}  <span id="discount">-$${Math.round(product.SuggestedRetailPrice - product.FinalPrice)}!!</span></p>
+      </a>
+    </li>
+    `;
+  else
+    return `
     <li class="product-card">
       <a href="/product_pages/?product=${product.Id}">
         <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">

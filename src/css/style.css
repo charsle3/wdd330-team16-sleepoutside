@@ -220,6 +220,14 @@ button {
   width: 100%;
 }
 
+#discount {
+  background-color: red;
+  color: white;
+  font-style: italic;
+  padding: 0 .5rem 0 .3rem;
+  border-radius: 25px;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
