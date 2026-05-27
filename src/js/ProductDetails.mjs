@@ -29,8 +29,19 @@ export default class ProductDetails {
           products.push(item);
         });
       }
-    
-      products.push(product);
+      
+      const existingProduct = products.find((item) => item.Id === product.Id);
+
+      if (existingProduct) {
+        let currentQuantity = parseInt(existingProduct.quantity);
+        if (isNaN(currentQuantity)) {
+          currentQuantity = 1;
+        }
+        existingProduct.quantity = currentQuantity + 1;
+      } else {
+        product.quantity = 1;
+        products.push(product);
+      }
     
       setLocalStorage("so-cart", products);
     }
@@ -43,7 +54,7 @@ export default class ProductDetails {
       nameWOBrand.innerHTML = this.product.NameWithoutBrand;
 
       const img = document.getElementById('productImage');
-      img.setAttribute("src", this.product.Image);
+      img.setAttribute("src", this.product.Images.PrimaryLarge);
       img.setAttribute("alt", this.product.Name);
 
       const price = document.getElementById('price');

@@ -1,37 +1,44 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
+function productCardTemplate(product) {
+  if (product.SuggestedRetailPrice > product.FinalPrice) // Check for discounts
+    return `
+    <li class="product-card">
+      <a href="/product_pages/?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
+        <h3>${product.Brand.Name}</h3>
+        <p>${product.NameWithoutBrand}</p>
+        <p class="product-card__price">$${product.FinalPrice}  <span id="discount">-$${Math.round(product.SuggestedRetailPrice - product.FinalPrice)}!!</span></p>
+      </a>
+    </li>
+    `;
+  else
+    return `
+    <li class="product-card">
+      <a href="/product_pages/?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
+        <h3>${product.Brand.Name}</h3>
+        <p>${product.NameWithoutBrand}</p>
+        <p class="product-card__price">$${product.FinalPrice}</p>
+      </a>
+    </li>
+    `;
+}
+
 export default class ProductList {
-    constructor(productCategory, datasource, targetElement) {
-        this.productCategory = productCategory;
-        this.datasource = datasource;
-        this.targetElement = targetElement;
-    }
+    constructor(category, dataSource, listElement) {
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+  }
 
     async init() {
-        const list = await this.datasource.getData();
-        console.log(list);
-
+        document.querySelector(".title").textContent = this.category;
+        const list = await this.dataSource.getData(this.category);
         this.renderList(list);
     }
 
-    productCardTemplate(product) {
-        const htmlTemplate = `
-            <li class="product-card">
-                <a href="product_pages/?product=${product.Id}">
-                    <img
-                    src="${product.Image}"
-                    alt="${product.Name}"
-                    />
-                    <h3 class="card__brand">${product.Brand.Name}</h3>
-                    <h2 class="card__name">${product.Name}</h2>
-                    <p class="product-card__price">${product.FinalPrice}</p>
-                </a>
-            </li>
-        `
-        return htmlTemplate;
-    }
-
     renderList(products) {
-        renderListWithTemplate(this.productCardTemplate, this.targetElement, products);
+        renderListWithTemplate(productCardTemplate, this.listElement, products);
     }
 }
