@@ -27,6 +27,7 @@ async function loadAlerts() {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Could not load alerts:", error);
   }
 }

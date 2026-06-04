@@ -270,7 +270,68 @@ button {
 .hide {
   display: none;
 }
+.checkout-form {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 600px;
+}
 
+fieldset {
+  border: 1px solid var(--light-grey);
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+legend {
+  font-family: var(--font-headline);
+  font-size: var(--large-font);
+  padding: 0 0.5rem;
+  color: var(--tertiary-color);
+}
+
+.checkout__name, 
+.checkout__address, 
+.checkout__payment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkout__name input, 
+.checkout__address input, 
+.checkout__payment input {
+  padding: 0.5rem;
+  border: 1px solid var(--light-grey);
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+
+.order__summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0.75rem;
+  font-size: 1rem;
+}
+
+.order__summary div:nth-child(even) {
+  text-align: right;
+  font-weight: bold;
+}
+
+#orderTotal {
+  color: var(--secondary-color);
+  font-size: var(--large-font);
+  border-top: 1px solid var(--light-grey);
+  padding-top: 0.5rem;
+}
+
+#checkoutSubmit {
+  width: 100%;
+  margin-top: 1rem;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

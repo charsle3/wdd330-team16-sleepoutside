@@ -16,6 +16,9 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+
+  const quantity = item.quantity || 1;
+
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -36,17 +39,23 @@ function cartItemTemplate(item) {
 
 function calculateTotal() {
   const totalElement = document.querySelector("#cart-total");
+  const cartItems = getLocalStorage("so-cart");
   let totalCost = 0;
 
   if (document.querySelector(".product-list").innerHTML != "") {
+    
     document.querySelector(".cart-footer").classList.remove("hide");
 
-    const cartItems = getLocalStorage("so-cart");
-    cartItems.forEach((item) => {
-      totalCost += item.FinalPrice * item.quantity;
-    });
+    if (cartItems && cartItems.forEach) {
+      cartItems.forEach((item) => {
+        const qty = Number(item.quantity) || 1;
+        totalCost += item.FinalPrice * qty;
+      });
+    }
 
-    totalElement.innerHTML = `<h2>Total: $${totalCost}</h2>`;
+    totalElement.innerHTML = `<h2>Total: $${totalCost.toFixed(2)}</h2>`;
+  } else {
+    document.querySelector(".cart-footer").classList.add("hide");
   }
 }
 
