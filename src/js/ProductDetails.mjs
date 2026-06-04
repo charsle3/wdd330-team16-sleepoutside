@@ -58,7 +58,14 @@ export default class ProductDetails {
       img.setAttribute("alt", this.product.Name);
 
       const price = document.getElementById('price');
-      price.innerHTML = this.product.FinalPrice;
+      price.innerHTML = `${this.product.FinalPrice}`;
+
+      const discount = Math.round(this.product.SuggestedRetailPrice - this.product.FinalPrice);
+      if (discount > 0) {
+        const dis = document.createElement('p');
+        dis.innerHTML = `Discount: $${discount}`;
+        price.appendChild(dis);
+      }
 
       const color = document.getElementById('color');
       color.innerHTML = this.product.Colors[0].ColorName;
