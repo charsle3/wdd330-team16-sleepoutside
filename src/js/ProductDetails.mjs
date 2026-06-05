@@ -1,5 +1,5 @@
 import { setLocalStorage } from './utils.mjs';
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, alertMessage } from './utils.mjs';
 
 export default class ProductDetails {
       constructor(productId, dataSource){
@@ -28,6 +28,7 @@ export default class ProductDetails {
         existingCart.forEach((item) => {
           products.push(item);
         });
+        alertMessage('Item added succesfuly')
       }
       
       const existingProduct = products.find((item) => item.Id === product.Id);

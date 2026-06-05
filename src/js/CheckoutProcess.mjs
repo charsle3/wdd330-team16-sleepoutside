@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -103,9 +103,30 @@ export default class CheckoutProcess {
 
     try {
       const response = await services.checkout(order);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+      console.log('Order processed successfully: ', response);
+
+      localStorage.removeItem(this.key);
+
+      window.location.href = "success.html";
+
+      } catch (err) {
+      console.log("Error caught in the process:", err);
+
+      const existingAlerts = document.querySelectorAll(".alert");
+      existingAlerts.forEach(alert => alert.remove());
+
+      if (err.name === "servicesError") {
+        
+        const errors = Object.values(err.message);
+        
+       
+        errors.forEach(errorText => {
+          alertMessage(errorText);
+        });
+      } else {
+        
+        alertMessage(`Unexpected error: ${err.message || err}`);
+      }
     }
   }
 }
