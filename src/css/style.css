@@ -360,6 +360,51 @@ legend {
   color: #000000;
   transform: scale(1.1);
 }
+
+.breadcrumbs-container {
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+
+.breadcrumbs li + li::before {
+  content: "->";
+  padding: 0 8px;
+  color: #666666;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #303030;
+  font-weight: bold;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+  color: #52796f;
+}
+
+.breadcrumbs span {
+  color: #52796f;
+  font-weight: 500;
+}
+
+.breadcrumbs .item-count span {
+  color: #7c7c7c;
+  font-style: italic;
+  font-weight: normal;
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

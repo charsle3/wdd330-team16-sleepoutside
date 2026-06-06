@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, renderBreadcrumbs } from "./utils.mjs";
 
 function productCardTemplate(product) {
   if (product.SuggestedRetailPrice > product.FinalPrice) // Check for discounts
@@ -35,6 +35,12 @@ export default class ProductList {
     async init() {
         document.querySelector(".title").textContent = this.category;
         const list = await this.dataSource.getData(this.category);
+        const categoryName = this.category.charAt(0).toUpperCase() + this.category.slice(1);
+        
+        const totalItems = list.length;
+
+        renderBreadcrumbs(categoryName, totalItems, false);
+
         this.renderList(list);
     }
 

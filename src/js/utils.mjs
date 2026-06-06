@@ -88,3 +88,21 @@ export function alertMessage(message, scroll = true) {
     window.scrollTo(0, 0);
   }
 }
+export function renderBreadcrumbs(category = "", itemCount = 0, isProductPage = false) {
+  const breadcrumbUl = document.getElementById("breadcrumbs");
+  if (!breadcrumbUl) return; 
+
+  let html = `<li><a href="../index.html">Home</a></li>`;
+
+  if (isProductPage) {
+
+    html += `<li><span>${category}</span></li>`;
+  } else if (category) {
+    html += `
+      <li><a href="?category=${category.toLowerCase()}">${category}</a></li>
+      <li class="item-count"><span>(${itemCount} items)</span></li>
+    `;
+  }
+
+  breadcrumbUl.innerHTML = html;
+}

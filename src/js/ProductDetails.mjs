@@ -1,5 +1,5 @@
 import { setLocalStorage } from './utils.mjs';
-import { getLocalStorage, alertMessage } from './utils.mjs';
+import { getLocalStorage, alertMessage, renderBreadcrumbs } from './utils.mjs';
 
 export default class ProductDetails {
       constructor(productId, dataSource){
@@ -11,10 +11,12 @@ export default class ProductDetails {
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
       
+      const categoryName = this.product.Category.charAt(0).toUpperCase() + this.product.Category.slice(1);
+
+      renderBreadcrumbs(categoryName, 0, true);
 
       this.renderProductDetails();
 
-      // document.getElementById('addToCart').addEventListener('click', this.addProductToCart(this.product).bind(this));
       document.getElementById('addToCart').addEventListener('click', () => {
         this.addProductToCart(this.product);
       });
