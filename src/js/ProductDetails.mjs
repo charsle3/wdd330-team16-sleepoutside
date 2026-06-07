@@ -11,9 +11,7 @@ export default class ProductDetails {
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
       
-      const categoryName = this.product.Category.charAt(0).toUpperCase() + this.product.Category.slice(1);
-
-      renderBreadcrumbs(categoryName, 0, true);
+      renderBreadcrumbs(this.product.Category, 0, true);
 
       this.renderProductDetails();
 

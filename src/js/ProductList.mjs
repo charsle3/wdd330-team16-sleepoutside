@@ -33,16 +33,15 @@ export default class ProductList {
   }
 
     async init() {
-        document.querySelector(".title").textContent = this.category;
-        const list = await this.dataSource.getData(this.category);
-        const categoryName = this.category.charAt(0).toUpperCase() + this.category.slice(1);
-        
-        const totalItems = list.length;
+    document.querySelector(".title").textContent = this.category;
+    
+    const list = await this.dataSource.getData(this.category);
+    const totalItems = list.length;
 
-        renderBreadcrumbs(categoryName, totalItems, false);
+    renderBreadcrumbs(this.category, totalItems, false);
 
-        this.renderList(list);
-    }
+    this.renderList(list);
+  }
 
     renderList(products) {
         renderListWithTemplate(productCardTemplate, this.listElement, products);
