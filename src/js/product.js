@@ -10,3 +10,4 @@ const specificProduct = new ProductDetails(productID, dataSource);
 specificProduct.init();
 
 loadHeaderFooter();
+document.querySelector("#discount").textContent = "20% OFF";

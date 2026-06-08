@@ -1,12 +1,22 @@
 [
   {
-    "message": "Notice: Heavy snowstorms may delay shipping by 1-2 business days.",
-    "background": "#ff9800",
-    "color": "#ffffff"
+    "message": "This is only a test.",
+    "background": "darkblue",
+    "color": "white"
   },
   {
-    "message": "Memorial Day Sale! Use code CAMP20 for 20% off all tents.",
-    "background": "#2e7d32",
-    "color": "#ffffff"
+    "message": "Welcome to Sleep Outside! New gear arriving soon.",
+    "background": "green",
+    "color": "white"
+  },
+  {
+    "message": "This is only a test.",
+    "background": "darkblue",
+    "color": "white"
+  },
+  {
+    "message": "Welcome to Sleep Outside! New gear arriving soon.",
+    "background": "green",
+    "color": "white"
   }
 ]
