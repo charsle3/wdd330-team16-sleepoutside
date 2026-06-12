@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,13 +9,26 @@
   </head>
 
   <body>
-    <header class="divider" id="main-header"></header>
+    <header class="divider" id="main-header">
+      <div class="search-container">
+        <form id="search-form" action="/product_listing/" method="GET">
+          <input 
+            type="text" 
+            id="search-input" 
+            name="search" 
+            placeholder="Search products..." 
+            required 
+          />
+          <button type="submit" id="search-button">🔍</button>
+        </form>
+      </div>
+    </header>
 
     <main class="divider">
       <section class="alert-list"></section>
       <div class="hero">
-        <img
-          src="/images/banner-sm.jpg"
+        <img 
+         src="/images/banner-sm.jpg"
           srcset="images/banner-sm.jpg 500w, images/banner.jpg"
           alt="image of a high mountain lake"
         />
@@ -63,8 +75,8 @@
               height="60"
             />
             <figcaption>Sleeping Bags</figcaption>
-          </figure></a
-        >
+          </figure>
+        </a>
         <a href="product_listing/?category=tents">
           <figure>
             <img
@@ -74,15 +86,15 @@
               height="60"
             />
             <figcaption>Tents</figcaption>
-          </figure></a
-        >
+          </figure>
+        </a>
       </div>
 
-      
       <section class="products">
         <h2>All Products</h2>
         <ul class="product-list"></ul>
       </section>
+      
       <section class="newsletter">
         <h2>Newsletter</h2>
         <p>
