@@ -26,19 +26,56 @@ function productCardTemplate(product) {
 }
 
 export default class ProductList {
-    constructor(category, dataSource, listElement) {
+  // Added searchQuery parameter to the constructor (defaulting to null if missing)
+  constructor(category, dataSource, listElement, searchQuery = null) {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.searchQuery = searchQuery;
   }
 
-    async init() {
-        document.querySelector(".title").textContent = this.category;
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+  async init() {
+    let list = [];
+
+    // Safely update the page title elements if they exist on the targeted DOM structure
+    const titleElement = document.querySelector(".title");
+    if (titleElement && this.category) {
+      titleElement.textContent = this.category;
     }
 
-    renderList(products) {
-        renderListWithTemplate(productCardTemplate, this.listElement, products);
+    if (this.searchQuery) {
+      // 1. If it's a search query, fetch across all core categories in the store ecosystem
+      const categoriesToSearch = ["tents", "backpacks", "sleeping-bags", "hammocks"];
+      const fetchPromises = categoriesToSearch.map(cat => this.dataSource.getData(cat).catch(() => []));
+      
+      // Resolve all fetches in parallel and flatten the distinct nested arrays into a single list
+      const allResults = await Promise.all(fetchPromises);
+      list = allResults.flat();
+
+      // 2. Locally filter the master catalog with case-insensitive checking against name and brand data
+      const cleanQuery = this.searchQuery.toLowerCase();
+      list = list.filter(product => 
+        (product.Name && product.Name.toLowerCase().includes(cleanQuery)) || 
+        (product.Brand && product.Brand.Name.toLowerCase().includes(cleanQuery)) ||
+        (product.DescriptionHtmlSimple && product.DescriptionHtmlSimple.toLowerCase().includes(cleanQuery))
+      );
+    } else if (this.category) {
+      // Standard target operation: Fetch specifically for a selected navigation category
+      list = await this.dataSource.getData(this.category);
     }
+
+    this.renderList(list);
+  }
+
+  renderList(products) {
+    // Empty the target element list first to ensure previous layouts clean up completely before render
+    this.listElement.innerHTML = "";
+    
+    if (products.length === 0) {
+      this.listElement.innerHTML = `<p class="no-products-msg">No products match your criteria. Try adjusting your search term.</p>`;
+      return;
+    }
+
+    renderListWithTemplate(productCardTemplate, this.listElement, products);
+  }
 }

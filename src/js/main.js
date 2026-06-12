@@ -1,7 +1,7 @@
 import { loadElements } from './utils.mjs';
 loadElements();
 
-//Newsletter form functionality
+// Newsletter form functionality
 const newsletterForm = document.querySelector('#newsletter-form');
 if (newsletterForm) {
   newsletterForm.addEventListener('submit', (newsletterEntry) => {
@@ -19,17 +19,19 @@ if (newsletterForm) {
   });
 }
 
-//Display form data on thankyou.html page
-const thankYouEmail = document.getElementById('thank-you-email');
-if (thankYouEmail) {
-  const emailInput = localStorage.getItem('newsletterEmail');
+// Search form functionality
+const searchForm = document.querySelector('#search-form');
+if (searchForm) {
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  if (emailInput) {
-    thankYouEmail.innerHTML = `
-            <h2>Thank You!</h2>
-            <p>Your email has been successfully submitted.</p>
-            <p>We appreciate your interest in our products and will keep you updated with the latest news and offers.</p>
-            <p>Your email: ${emailInput}</p>
-        `;
-  }
+    const searchInput = document.getElementById('search-input').value;
+    const query = searchInput.trim();
+
+    if (query !== '') {
+      // Redirects to the product listing page passing the search query via URL parameters
+      // Using an absolute-style path root to ensure it resolves correctly from any nested page level
+      window.location.href = `/product_listing/index.html?search=${encodeURIComponent(query)}`;
+    }
+  });
 }
