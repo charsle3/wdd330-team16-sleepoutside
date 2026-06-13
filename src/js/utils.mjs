@@ -32,10 +32,10 @@ export function getParam(param) {
 
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   if (clear) {
-        parentElement.innerHTML = "";
-      }
+    parentElement.innerHTML = "";
+  }
   list.forEach(product => {
-      parentElement.insertAdjacentHTML(position, templateFn(product));
+    parentElement.insertAdjacentHTML(position, templateFn(product));
   });
 }
 
@@ -61,4 +61,16 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
+}
+
+/**
+ * Escapes HTML special characters to prevent Cross-Site Scripting (XSS) 
+ * vulnerabilities when rendering user-submitted text fields.
+ * @param {string} str 
+ * @returns {string}
+ */
+export function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, 
+    (tag) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+  );
 }

@@ -481,3 +481,123 @@ body.dark #search-button:hover {
 #darkToggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* ==========================================================================
+   Product Comments Subsystem Styles
+   ========================================================================== */
+.product-comments {
+  padding: 1.5rem 1rem;
+  max-width: 500px;
+  margin: 2rem auto auto auto;
+}
+
+.product-comments h2 {
+  font-size: 1.4em;
+  margin-bottom: 1rem;
+  color: var(--dark-grey);
+}
+
+#comments-container {
+  margin-bottom: 2rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.comment-card {
+  background-color: #fcfcfc;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.comment-card strong {
+  color: var(--tertiary-color);
+}
+
+.comment-form {
+  background-color: #f9f9f9;
+  border: 1px solid var(--light-grey);
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+.comment-form h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1em;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 0.25rem;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--dark-grey);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+  border-color: var(--primary-color);
+}
+
+#submit-comment {
+  margin: 0; /* Override center-alignment utility of base buttons */
+  width: auto;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+#submit-comment:hover {
+  background-color: var(--tertiary-color);
+}
+
+/* 🌙 Comments Dark Mode Overrides */
+body.dark .product-comments h2 {
+  color: #f1f1f1;
+}
+
+body.dark .comment-card {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+body.dark .comment-card strong {
+  color: var(--primary-color);
+}
+
+body.dark .comment-form {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+body.dark .comment-form input[type="text"],
+body.dark .comment-form textarea {
+  background-color: #2c2c2c;
+  border-color: #555;
+  color: #f1f1f1;
+}
+
+body.dark .comment-form input[type="text"]:focus,
+body.dark .comment-form textarea:focus {
+  border-color: var(--primary-color);
+}

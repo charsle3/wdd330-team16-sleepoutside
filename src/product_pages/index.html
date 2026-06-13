@@ -1,16 +1,11 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Sleep Outside | Cedar Ridge Rimrock 2-person tent</title>
-
     <link rel="stylesheet" href="../css/style.css" />
-
-    <script src="../js/product.js" type="module"></script>
+    <script src="./js/product.js" type="module"></script>
   </head>
 
   <body>
@@ -19,22 +14,52 @@
     <main class="divider">
       <section class="product-detail">
         <h3 id="brand"></h3>
-
         <h2 class="divider" id="nameWOBrand"></h2>
-
         <img class="divider" id="productImage" src="" alt="" />
-
         <p class="product-card__price" id="price"></p>
-
         <p class="product__color" id="color"></p>
-
         <p class="product__description" id="description"></p>
-        
         <p class="product__discount" id="discount"></p>
 
         <div class="product-detail__add">
           <button id="addToCart" data-id="">Add to Cart</button>
         </div>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="product-comments">
+        <h2>Customer Reviews</h2>
+        
+        <div id="comments-container">
+          <p class="no-comments">No reviews yet. Be the first to review this product!</p>
+        </div>
+
+        <form id="comment-form" class="comment-form">
+          <h3>Write a Review</h3>
+          
+          <div class="form-field">
+            <label for="comment-author">Name:</label>
+            <input 
+              type="text" 
+              id="comment-author" 
+              placeholder="Your name" 
+              required 
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="comment-text">Review:</label>
+            <textarea 
+              id="comment-text" 
+              rows="4" 
+              placeholder="Share your thoughts on this product..." 
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" id="submit-comment">Submit Review</button>
+        </form>
       </section>
     </main>
 
